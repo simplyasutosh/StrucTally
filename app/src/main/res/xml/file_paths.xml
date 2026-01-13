@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Internal app storage for receipt images -->
+    <files-path
+        name="receipt_images"
+        path="receipts/" />
+
+    <!-- Cache directory for temporary files -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- External storage for exports -->
+    <external-files-path
+        name="exports"
+        path="exports/" />
+
+    <!-- External cache for temporary shared files -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+</paths>

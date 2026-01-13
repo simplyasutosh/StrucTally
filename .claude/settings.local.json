@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew clean:*)",
+      "Bash(gradle wrapper:*)",
+      "Bash(find:*)",
+      "Bash(.gradlew:*)",
+      "Bash(chmod:*)",
+      "Bash(curl:*)",
+      "Bash(./gradlew:*)",
+      "Bash(\"C:/Program Files/Android/Android Studio/jbr/bin/java.exe\":*)"
+    ]
+  }
+}

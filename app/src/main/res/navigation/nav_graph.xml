@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_dashboard">
+
+    <!-- Dashboard Fragment (Home/Overview) -->
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.construction.expense.presentation.dashboard.DashboardFragment"
+        android:label="@string/nav_dashboard" />
+
+    <!-- Expenses Fragment -->
+    <fragment
+        android:id="@+id/navigation_expenses"
+        android:name="com.construction.expense.presentation.expense.list.ExpenseListFragment"
+        android:label="@string/nav_expenses" />
+
+    <!-- Projects Fragment -->
+    <fragment
+        android:id="@+id/navigation_projects"
+        android:name="com.construction.expense.presentation.project.ProjectListFragment"
+        android:label="@string/nav_projects" />
+
+    <!-- Reports Fragment -->
+    <fragment
+        android:id="@+id/navigation_reports"
+        android:name="com.construction.expense.presentation.reports.ReportsFragment"
+        android:label="@string/nav_reports" />
+
+    <!-- Settings Fragment -->
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.construction.expense.presentation.settings.SettingsFragment"
+        android:label="@string/nav_settings" />
+
+</navigation>

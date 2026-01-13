@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Include database in cloud backup -->
+        <include domain="database" path="." />
+        <include domain="sharedpref" path="." />
+
+        <!-- Exclude sensitive data and cache -->
+        <exclude domain="cache" path="." />
+        <exclude domain="file" path="temp/" />
+    </cloud-backup>
+
+    <device-transfer>
+        <!-- Similar rules for device-to-device transfer -->
+        <include domain="database" path="." />
+        <include domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>
