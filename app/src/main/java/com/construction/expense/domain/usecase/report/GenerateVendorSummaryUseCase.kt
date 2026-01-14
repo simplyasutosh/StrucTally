@@ -1,5 +1,7 @@
 package com.construction.expense.domain.usecase.report
 
+import com.construction.expense.domain.model.ConcentrationLevel
+import com.construction.expense.domain.model.VendorDiversityAnalysis
 import com.construction.expense.domain.model.VendorExpenseSummary
 import com.construction.expense.domain.repository.IReportRepository
 import kotlinx.coroutines.flow.Flow
@@ -131,26 +133,6 @@ class GenerateVendorSummaryUseCase @Inject constructor(
             }
         }
     }
-}
-
-/**
- * Vendor diversity analysis
- */
-data class VendorDiversityAnalysis(
-    val totalVendors: Int,
-    val totalAmount: Double,
-    val top5Percentage: Double,  // % of spending with top 5 vendors
-    val top10Percentage: Double, // % of spending with top 10 vendors
-    val concentrationLevel: ConcentrationLevel
-)
-
-/**
- * Spending concentration level
- */
-enum class ConcentrationLevel {
-    HIGH,    // Spending concentrated with few vendors (risky)
-    MEDIUM,  // Moderate concentration
-    LOW      // Well distributed (healthy)
 }
 
 /**
