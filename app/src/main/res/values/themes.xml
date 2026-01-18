@@ -45,8 +45,6 @@
 
     <style name="Widget.StrucTally.BottomNav" parent="Widget.Material3.BottomNavigationView">
         <item name="itemRippleColor">@color/st_ripple</item>
-        <item name="itemActiveIndicatorStyle">@style/Widget.Material3.BottomNavigationView.ActiveIndicator</item>
-        <item name="itemActiveIndicatorColor">@color/st_primary_container</item>
         <item name="labelVisibilityMode">labeled</item>
     </style>
 </resources>
