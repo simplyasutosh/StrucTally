@@ -77,7 +77,7 @@ interface CategoryBudgetDao {
         projectId: String,
         categoryId: Int,
         amount: Double,
-        timestamp: Long = System.currentTimeMillis()
+        timestamp: Long
     )
 
     /**

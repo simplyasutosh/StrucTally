@@ -52,13 +52,13 @@ interface ExpenseDao {
      * Preferred method for deleting expenses
      */
     @Query("UPDATE expenses SET status = 'DELETED', modifiedDate = :timestamp WHERE id = :id")
-    suspend fun softDelete(id: String, timestamp: Long = System.currentTimeMillis())
+    suspend fun softDelete(id: String, timestamp: Long)
 
     /**
      * Restore a soft-deleted expense
      */
     @Query("UPDATE expenses SET status = 'ACTIVE', modifiedDate = :timestamp WHERE id = :id")
-    suspend fun restore(id: String, timestamp: Long = System.currentTimeMillis())
+    suspend fun restore(id: String, timestamp: Long)
 
     // ===== BASIC QUERIES =====
 

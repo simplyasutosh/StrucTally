@@ -50,7 +50,7 @@ class ExpenseRepositoryImpl @Inject constructor(
 
     override suspend fun softDeleteExpense(expenseId: String): Result<Unit> {
         return try {
-            expenseDao.softDelete(expenseId)
+            expenseDao.softDelete(expenseId, System.currentTimeMillis())
             Result.success(Unit)
         } catch (e: Exception) {
             Timber.e(e, "Failed to soft delete expense")
@@ -60,7 +60,7 @@ class ExpenseRepositoryImpl @Inject constructor(
 
     override suspend fun restoreExpense(expenseId: String): Result<Unit> {
         return try {
-            expenseDao.restore(expenseId)
+            expenseDao.restore(expenseId, System.currentTimeMillis())
             Result.success(Unit)
         } catch (e: Exception) {
             Timber.e(e, "Failed to restore expense")
