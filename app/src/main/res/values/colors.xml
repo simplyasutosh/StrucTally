@@ -29,4 +29,27 @@
     <color name="background_dark">#FF121212</color>
     <color name="surface">#FFFFFFFF</color>
     <color name="surface_dark">#FF1E1E1E</color>
+
+    <!-- StrucTally modern palette -->
+    <color name="st_primary">#2563EB</color> <!-- blue -->
+    <color name="st_primary_container">#2B6BFF</color>
+    <color name="st_secondary">#7C3AED</color> <!-- purple -->
+    <color name="st_secondary_container">#8B5CF6</color>
+    <color name="st_tertiary">#22C55E</color> <!-- green -->
+
+    <color name="st_background">#F7F8FA</color>
+    <color name="st_surface">#FFFFFFFF</color>
+    <color name="st_surface_variant">#EEF2F7</color>
+    <color name="st_on_surface">#0F172A</color>
+    <color name="st_on_surface_variant">#64748B</color>
+
+    <color name="st_error">#EF4444</color>
+    <color name="st_ripple">#1A2563EB</color>
+
+    <!-- Accent colors for category dots/bars -->
+    <color name="st_blue_bar">#3B82F6</color>
+    <color name="st_green_bar">#22C55E</color>
+    <color name="st_yellow_bar">#EAB308</color>
+    <color name="st_purple_bar">#A855F7</color>
+    <color name="st_gray_track">#E5E7EB</color>
 </resources>

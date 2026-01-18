@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme -->
-    <style name="Theme.StrucTally" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/construction_orange</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
+    <style name="Theme.StrucTally" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Brand -->
+        <item name="colorPrimary">@color/st_primary</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/st_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
 
-        <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/accent</item>
-        <item name="colorSecondaryVariant">@color/accent</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/st_secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/st_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/white</item>
 
-        <!-- Status bar color -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="colorTertiary">@color/st_tertiary</item>
+        <item name="colorOnTertiary">@color/white</item>
 
-        <!-- Background colors -->
-        <item name="android:windowBackground">@color/background</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/black</item>
+        <!-- Surfaces -->
+        <item name="android:windowBackground">@color/st_background</item>
+        <item name="colorSurface">@color/st_surface</item>
+        <item name="colorSurfaceVariant">@color/st_surface_variant</item>
+        <item name="colorOnSurface">@color/st_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/st_on_surface_variant</item>
 
-        <!-- Error color -->
-        <item name="colorError">@color/error</item>
+        <!-- Error -->
+        <item name="colorError">@color/st_error</item>
         <item name="colorOnError">@color/white</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/st_surface</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Components -->
+        <item name="bottomNavigationStyle">@style/Widget.StrucTally.BottomNav</item>
+        <item name="materialCardViewStyle">@style/Widget.StrucTally.Card</item>
+    </style>
+
+    <style name="Widget.StrucTally.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">@dimen/st_radius_20</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="Widget.StrucTally.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemRippleColor">@color/st_ripple</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Material3.BottomNavigationView.ActiveIndicator</item>
+        <item name="itemActiveIndicatorColor">@color/st_primary_container</item>
+        <item name="labelVisibilityMode">labeled</item>
     </style>
 </resources>

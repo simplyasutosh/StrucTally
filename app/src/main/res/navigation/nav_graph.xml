@@ -28,6 +28,21 @@
         android:name="com.construction.expense.presentation.reports.ReportsFragment"
         android:label="@string/nav_reports" />
 
+    <!-- Add/Edit Expense (opened from FAB) -->
+    <fragment
+        android:id="@+id/add_edit_expense"
+        android:name="com.construction.expense.presentation.expense.add.AddEditExpenseFragment"
+        android:label="Add Expense">
+        <argument
+            android:name="projectId"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="expenseId"
+            app:argType="string"
+            android:nullable="true" />
+    </fragment>
+
     <!-- Settings Fragment -->
     <fragment
         android:id="@+id/navigation_settings"

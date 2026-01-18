@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.construction.expense.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,23 +50,16 @@ class MainActivity : AppCompatActivity() {
         val bottomNav: BottomNavigationView = binding.bottomNavigation
         bottomNav.setupWithNavController(navController)
 
-        // Setup ActionBar with NavController
-        // Define top-level destinations (no back button shown)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_dashboard,
-                R.id.navigation_expenses,
-                R.id.navigation_projects,
-                R.id.navigation_reports,
-                R.id.navigation_settings
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        // Center FAB -> Add Expense screen (modern flow, like the mock)
+        binding.fabAdd.setOnClickListener {
+            val current = navController.currentDestination?.id
+            if (current != R.id.add_edit_expense) {
+                navController.navigate(R.id.add_edit_expense)
+            }
+        }
 
         Timber.d("Navigation setup complete")
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+    override fun onSupportNavigateUp(): Boolean = navController.navigateUp() || super.onSupportNavigateUp()
 }
