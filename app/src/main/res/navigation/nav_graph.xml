@@ -40,7 +40,7 @@
         <argument
             android:name="expenseId"
             app:argType="string"
-            android:nullable="true" />
+            app:nullable="true" />
     </fragment>
 
     <!-- Settings Fragment -->

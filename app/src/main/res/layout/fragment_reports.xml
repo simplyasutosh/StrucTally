@@ -78,7 +78,7 @@
                             android:textColor="@color/white"
                             app:chipBackgroundColor="#33FFFFFF"
                             app:checkedIconVisible="false"
-                            app:checked="true" />
+                            android:checked="true" />
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
