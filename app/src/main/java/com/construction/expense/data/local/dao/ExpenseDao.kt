@@ -42,6 +42,12 @@ interface ExpenseDao {
     suspend fun delete(expense: ExpenseEntity)
 
     /**
+     * Delete expense by ID
+     */
+    @Query("DELETE FROM expenses WHERE id = :id")
+    suspend fun deleteById(id: String)
+
+    /**
      * Soft delete - sets status to 'DELETED' but keeps record
      * Preferred method for deleting expenses
      */
@@ -319,6 +325,24 @@ interface ExpenseDao {
         ORDER BY total DESC
     """)
     suspend fun getVendorTotals(projectId: String): List<VendorTotal>
+
+    /**
+     * Get project summary for ProjectWithSummary
+     */
+    @Query("""
+        SELECT 
+            COALESCE(SUM(CASE WHEN status = 'ACTIVE' THEN amount ELSE 0 END), 0.0) as totalExpenses,
+            CAST(COUNT(CASE WHEN status = 'ACTIVE' THEN 1 ELSE NULL END) AS INTEGER) as expenseCount,
+            COALESCE(SUM(CASE 
+                WHEN status = 'ACTIVE' 
+                AND date >= :currentMonthStart 
+                THEN amount 
+                ELSE 0 
+            END), 0.0) as thisMonthExpenses
+        FROM expenses
+        WHERE projectId = :projectId
+    """)
+    fun getProjectSummary(projectId: String, currentMonthStart: Long): Flow<ProjectSummary>
 }
 
 /**
@@ -351,4 +375,13 @@ data class VendorTotal(
     val vendorName: String,
     val total: Double,
     val count: Int
+)
+
+/**
+ * Project summary for ProjectWithSummary
+ */
+data class ProjectSummary(
+    val totalExpenses: Double,
+    val expenseCount: Int,
+    val thisMonthExpenses: Double
 )

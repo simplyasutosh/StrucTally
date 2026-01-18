@@ -105,16 +105,6 @@ enum class ConcentrationLevel {
     LOW      // Healthy - distributed spending
 }
 
-/**
- * Budget alert level
- */
-enum class BudgetAlertLevel {
-    NONE,     // < 50%
-    LOW,      // 50-74%
-    MEDIUM,   // 75-89%
-    HIGH,     // 90-99%
-    CRITICAL  // >= 100%
-}
 
 /**
  * Project with summary data

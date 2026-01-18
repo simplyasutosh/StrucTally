@@ -29,7 +29,7 @@ class CategoryBudgetRepositoryImpl @Inject constructor(
 
     override suspend fun getBudget(projectId: String, categoryId: Int): CategoryBudget? {
         return try {
-            categoryBudgetDao.getBudget(projectId, categoryId)?.let {
+            categoryBudgetDao.getBudgetSync(projectId, categoryId)?.let {
                 categoryBudgetMapper.toDomain(it)
             }
         } catch (e: Exception) {

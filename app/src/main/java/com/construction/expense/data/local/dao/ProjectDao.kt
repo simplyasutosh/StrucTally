@@ -51,6 +51,12 @@ interface ProjectDao {
     @Delete
     suspend fun delete(project: ProjectEntity)
 
+    /**
+     * Delete project by ID
+     */
+    @Query("DELETE FROM projects WHERE id = :id")
+    suspend fun deleteById(id: String)
+
     // ===== QUERIES =====
 
     /**

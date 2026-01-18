@@ -17,6 +17,9 @@ interface CategoryBudgetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(budget: CategoryBudgetEntity): Long
 
+    @Upsert
+    suspend fun upsert(budget: CategoryBudgetEntity)
+
     /**
      * Insert multiple budgets (when setting up project budgets)
      */
@@ -41,7 +44,7 @@ interface CategoryBudgetDao {
         WHERE projectId = :projectId
         ORDER BY categoryId ASC
     """)
-    fun getByProject(projectId: String): Flow<List<CategoryBudgetEntity>>
+    fun getAllBudgets(projectId: String): Flow<List<CategoryBudgetEntity>>
 
     /**
      * IMPORTANT: Get budget for specific category
@@ -121,6 +124,12 @@ interface CategoryBudgetDao {
         categoryId: Int,
         threshold: Int?
     )
+
+    /**
+     * Delete budget for specific category
+     */
+    @Query("DELETE FROM category_budgets WHERE projectId = :projectId AND categoryId = :categoryId")
+    suspend fun deleteBudget(projectId: String, categoryId: Int)
 
     /**
      * Delete all budgets for a project (cascade handles this, but useful for cleanup)

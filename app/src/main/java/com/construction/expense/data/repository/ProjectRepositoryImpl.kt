@@ -57,20 +57,34 @@ class ProjectRepositoryImpl @Inject constructor(
     }
 
     override fun getProjectWithSummary(projectId: String): Flow<ProjectWithSummary?> {
+        // Calculate start of current month
+        val calendar = java.util.Calendar.getInstance()
+        calendar.set(java.util.Calendar.DAY_OF_MONTH, 1)
+        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0)
+        calendar.set(java.util.Calendar.MINUTE, 0)
+        calendar.set(java.util.Calendar.SECOND, 0)
+        calendar.set(java.util.Calendar.MILLISECOND, 0)
+        val currentMonthStart = calendar.timeInMillis
+        
         return combine(
             projectDao.getById(projectId),
-            expenseDao.getProjectSummary(projectId)
+            expenseDao.getProjectSummary(projectId, currentMonthStart)
         ) { projectEntity, summary ->
-            projectEntity?.let {
-                ProjectWithSummary(
-                    project = projectMapper.toDomain(it),
-                    totalExpenses = summary.totalExpenses ?: 0.0,
-                    budgetUtilization = if (it.totalBudget > 0) {
-                        ((summary.totalExpenses ?: 0.0) / it.totalBudget) * 100
-                    } else 0.0,
-                    expenseCount = summary.expenseCount ?: 0,
-                    thisMonthExpenses = summary.thisMonthExpenses ?: 0.0
-                )
+            try {
+                projectEntity?.let {
+                    ProjectWithSummary(
+                        project = projectMapper.toDomain(it),
+                        totalExpenses = summary.totalExpenses,
+                        budgetUtilization = if (it.totalBudget > 0) {
+                            (summary.totalExpenses / it.totalBudget) * 100
+                        } else 0.0,
+                        expenseCount = summary.expenseCount,
+                        thisMonthExpenses = summary.thisMonthExpenses
+                    )
+                }
+            } catch (e: Exception) {
+                Timber.e(e, "Error creating ProjectWithSummary for projectId: $projectId")
+                null
             }
         }
     }

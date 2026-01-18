@@ -29,6 +29,12 @@ interface MilestoneDao {
     @Delete
     suspend fun delete(milestone: MilestoneEntity)
 
+    /**
+     * Delete milestone by ID
+     */
+    @Query("DELETE FROM milestones WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
     @Query("SELECT * FROM milestones WHERE id = :id")
     fun getById(id: Int): Flow<MilestoneEntity?>
 
@@ -41,6 +47,18 @@ interface MilestoneDao {
         ORDER BY plannedStartDate ASC
     """)
     fun getByProject(projectId: String): Flow<List<MilestoneEntity>>
+
+    /**
+     * Get only active milestones (NOT_STARTED, IN_PROGRESS)
+     * Excludes COMPLETED milestones
+     */
+    @Query("""
+        SELECT * FROM milestones
+        WHERE projectId = :projectId 
+        AND status IN ('NOT_STARTED', 'IN_PROGRESS')
+        ORDER BY plannedStartDate ASC
+    """)
+    fun getActiveByProject(projectId: String): Flow<List<MilestoneEntity>>
 
     /**
      * Get milestones by status

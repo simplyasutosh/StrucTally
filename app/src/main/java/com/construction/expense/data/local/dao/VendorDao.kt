@@ -28,6 +28,12 @@ interface VendorDao {
     @Delete
     suspend fun delete(vendor: VendorEntity)
 
+    /**
+     * Delete vendor by ID
+     */
+    @Query("DELETE FROM vendors WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
     @Query("SELECT * FROM vendors WHERE id = :id")
     fun getById(id: Int): Flow<VendorEntity?>
 

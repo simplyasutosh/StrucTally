@@ -8,7 +8,9 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,7 +52,15 @@ class ProcessReceiptUseCase @Inject constructor(
             val image = InputImage.fromFilePath(context, imageUri)
 
             // Process image with ML Kit
-            val visionText = recognizer.process(image).await()
+            val visionText = suspendCancellableCoroutine<com.google.mlkit.vision.text.Text> { continuation ->
+                recognizer.process(image)
+                    .addOnSuccessListener { result ->
+                        continuation.resume(result)
+                    }
+                    .addOnFailureListener { exception ->
+                        continuation.resumeWithException(exception)
+                    }
+            }
 
             Timber.d("OCR: Extracted ${visionText.textBlocks.size} text blocks")
 
